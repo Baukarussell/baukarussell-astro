@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Baukarussell/baukarussell-astro
   branch: main
-  base_url: https://baukarussell.ch
+  base_url: https://baukarussell-astro.pages.dev
   auth_endpoint: /api/auth
 
 publish_mode: editorial_workflow
