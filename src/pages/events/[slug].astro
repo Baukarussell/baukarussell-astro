@@ -1,15 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-// Hier holen wir uns alle Events, die im Admin-Bereich (CMS) angelegt werden
 export async function getStaticPaths() {
-  const events = import.meta.glob('/src/content/events/*.md', { eager: true });
+  const events = await Astro.glob('../../content/events/*.md');
   
-  return Object.entries(events).map(([path, event]) => {
-    const slug = path.split('/').pop()?.replace('.md', '');
+  return events.map((event) => {
+    const slug = event.url.split('/').pop().replace('.md', '');
     return {
       params: { slug },
-      props: { event: event.frontmatter }
+      props: { event: event.frontmatter, content: event.Content }
     };
   });
 }
@@ -17,26 +16,15 @@ export async function getStaticPaths() {
 const { event } = Astro.props;
 ---
 <Layout title={event.title}>
-  <!-- Titelbild -->
   <div style="width: 100%; height: 60vh; margin-top: 100px; overflow: hidden;">
     <img src={event.image} alt={event.title} style="width: 100%; height: 100%; object-fit: cover;">
   </div>
 
-  <!-- Event Info -->
-  <div style="max-width: 800px; margin: 60px auto; padding: 0 40px; text-align: center;">
-    <p style="color: #b8945f; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px;">{event.date}</p>
-    <h1 style="font-size: 48px; margin-bottom: 40px;">{event.title}</h1>
+  <div style="max-width: 800px; margin: 60px auto; padding: 0 40px;">
+    <p style="color: #b8945f; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; text-align: center;">{new Date(event.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+    <h1 style="font-size: 48px; margin-bottom: 40px; text-align: center;">{event.title}</h1>
     <div style="font-size: 16px; line-height: 1.8; color: #444; text-align: justify;">
-      {event.body}
+      <slot />
     </div>
-
-    <!-- Galerie (falls Fotos hochgeladen wurden) -->
-    {event.galerie && (
-      <div style="margin-top: 80px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
-        {event.galerie.map((foto: any) => (
-          <img src={foto.image} alt="Impression" style="width: 100%; height: auto; border-radius: 4px;">
-        ))}
-      </div>
-    )}
   </div>
 </Layout>
