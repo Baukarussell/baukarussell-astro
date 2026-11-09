@@ -5,8 +5,6 @@ export async function getStaticPaths() {
   const events = await Astro.glob('../../content/events/*.md');
   
   return events.map((event) => {
-    // Wir machen den Link aus dem Titel (z.B. "Baukarussell meets Sablier" -> "baukarussell-meets-sablier")
-    // Das ist absolut krisensicher und funktioniert immer.
     const slug = event.frontmatter.title
       .toLowerCase()
       .replace(/\s+/g, '-')
