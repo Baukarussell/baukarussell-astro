@@ -1,0 +1,79 @@
+---
+export interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} – Baukarussell</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --gold: #b8945f; --gold-light: #d4b483; --dark: #1a1a1a; --cream: #faf8f5; --text: #333; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--cream); line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.02em; }
+    
+    nav { position: fixed; top: 0; width: 100%; padding: 22px 80px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: all 0.4s ease; background: rgba(250, 248, 245, 0.98); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .logo-text { font-family: 'Cormorant Garamond', serif; display: inline-block; text-decoration: none; line-height: 1; }
+    .logo-main { display: block; font-size: 56px; font-weight: 500; letter-spacing: 0.08em; color: var(--dark); text-transform: uppercase; line-height: 1; margin-bottom: 5px; }
+    .logo-sub { display: block; font-size: 13px; font-weight: 400; letter-spacing: 0.35em; color: var(--dark); text-transform: uppercase; padding-left: 6px; }
+    .logo-sub::before { content: '─── '; font-size: 11px; }
+    .logo-sub::after { content: ' ───'; font-size: 11px; }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a { color: var(--dark); text-decoration: none; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; transition: all 0.3s; font-weight: 500; }
+    .nav-links a:hover { color: var(--gold); }
+    
+    footer { background: var(--dark); color: white; padding: 70px 40px 30px; text-align: center; margin-top: 80px; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 32px; letter-spacing: 0.2em; color: white; margin-bottom: 8px; font-weight: 500; }
+    .footer-sub { font-size: 11px; letter-spacing: 0.4em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 40px; }
+    .footer-links { display: flex; justify-content: center; gap: 40px; margin-bottom: 35px; flex-wrap: wrap; }
+    .footer-links a { color: white; text-decoration: none; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; transition: all 0.3s; }
+    .footer-links a:hover { opacity: 1; color: var(--gold); }
+    .footer-copy { font-size: 11px; color: #666; letter-spacing: 0.1em; padding-top: 25px; border-top: 1px solid #333; }
+
+    @media (max-width: 900px) {
+      nav { padding: 15px 25px; }
+      .nav-links { display: none; }
+      .logo-main { font-size: 30px; }
+      .logo-sub { font-size: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <a href="/" class="logo-text">
+      <span class="logo-main">BAUKARUSSELL</span>
+      <span class="logo-sub">Networking à la carte</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#about">Über uns</a></li>
+      <li><a href="/#members">Mitglieder</a></li>
+      <li><a href="/events">Events</a></li>
+      <li><a href="/#contact">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer>
+    <div class="footer-logo">BAUKARUSSELL</div>
+    <div class="footer-sub">Networking à la carte</div>
+    <div class="footer-links">
+      <a href="/">Startseite</a>
+      <a href="/#members">Mitglieder</a>
+      <a href="/events">Events</a>
+      <a href="/#contact">Kontakt</a>
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutz</a>
+    </div>
+    <div class="footer-copy">© 2026 Baukarussell. Alle Rechte vorbehalten.</div>
+  </footer>
+</body>
+</html>
