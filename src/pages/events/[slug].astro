@@ -2,12 +2,11 @@
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  // Alle Markdown-Dateien aus dem Ordner laden
   const events = await Astro.glob('../../content/events/*.md');
   
   return events.map((event) => {
-    // Den Dateinamen (Slug) aus dem Pfad extrahieren
-    const parts = event.file.split('/');
+    // .url statt .file verwenden!
+    const parts = event.url.split('/');
     const fileName = parts[parts.length - 1];
     const slug = fileName.replace('.md', '');
     
