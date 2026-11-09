@@ -2,13 +2,18 @@
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
+  // Alle Markdown-Dateien aus dem Ordner laden
   const events = await Astro.glob('../../content/events/*.md');
   
   return events.map((event) => {
-    const slug = event.url.split('/').pop().replace('.md', '');
+    // Den Dateinamen (Slug) aus dem Pfad extrahieren
+    const parts = event.file.split('/');
+    const fileName = parts[parts.length - 1];
+    const slug = fileName.replace('.md', '');
+    
     return {
-      params: { slug },
-      props: { event: event.frontmatter, content: event.Content }
+      params: { slug: slug },
+      props: { event: event.frontmatter }
     };
   });
 }
@@ -21,10 +26,21 @@ const { event } = Astro.props;
   </div>
 
   <div style="max-width: 800px; margin: 60px auto; padding: 0 40px;">
-    <p style="color: #b8945f; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; text-align: center;">{new Date(event.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+    <p style="color: #b8945f; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; text-align: center;">
+      {event.date}
+    </p>
     <h1 style="font-size: 48px; margin-bottom: 40px; text-align: center;">{event.title}</h1>
+    
     <div style="font-size: 16px; line-height: 1.8; color: #444; text-align: justify;">
-      <slot />
+      {event.body}
     </div>
+
+    {event.galerie && (
+      <div style="margin-top: 80px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+        {event.galerie.map((foto) => (
+          <img src={foto.image} alt="Impression" style="width: 100%; height: auto; border-radius: 4px;">
+        ))}
+      </div>
+    )}
   </div>
 </Layout>
