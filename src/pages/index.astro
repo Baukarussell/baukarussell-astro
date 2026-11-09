@@ -2,17 +2,57 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Networking à la carte">
-  <section style="padding: 200px 40px 100px; text-align: center;">
-    <h1 style="font-size: 48px; margin-bottom: 20px;">Herzlich Willkommen beim Baukarussell</h1>
-    <p style="color: #666;">Wir bauen gerade unsere neue Webseite auf. Schauen Sie bald wieder vorbei!</p>
+  <!-- Hero -->
+  <section style="margin-top: 145px; width: 100%; height: 60vh; background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop') center/cover;">
+  </section>
+
+  <!-- Über uns -->
+  <section id="about" style="padding: 120px 40px; max-width: 850px; margin: 0 auto;">
+    <h2 style="font-size: 48px; text-align: center; margin-bottom: 20px;">Wer wir sind</h2>
+    <p style="color: #b8945f; text-align: center; text-transform: uppercase; letter-spacing: 0.4em; font-size: 12px; margin-bottom: 60px;">Ein Netzwerk der Baubranche</p>
     
-    <div id="about" style="margin-top: 100px; padding: 50px; background: white; text-align: left;">
-      <h2>Über uns</h2>
-      <p>Dieser Bereich wird in Kürze mit Inhalten gefüllt.</p>
+    <div style="font-size: 16px; line-height: 1.9; text-align: justify; color: #444;">
+      <p style="margin-bottom: 20px;">Wir sind Baukarussell, ein Netzwerk von Unternehmen aus unterschiedlichen Bereichen der Bauwirtschaft. Unsere Mitglieder vereinen Fachwissen, Erfahrung, unternehmerisches Denken und unterschiedliche Perspektiven. Diese Vielfalt macht die Stärke unseres Netzwerks aus. Sie schafft Raum für wertvolle Verbindungen, neue Impulse, gegenseitige Inspiration und neue Möglichkeiten.</p>
+      
+      <h3 style="font-size: 28px; text-align: center; margin: 60px 0 20px;">Networking à la carte</h3>
+      <p style="margin-bottom: 20px;">Networking à la carte bedeutet für uns, Menschen zusammenzubringen, die Qualität, Innovation und besondere Werte teilen. Wir schaffen dafür einen Rahmen mit ausgewählten Locations, besonderen Erlebnissen und exklusiven Partnerschaften.</p>
+      <p>Unsere Veranstaltungen verbinden persönlichen Austausch mit Wertschätzung und Inspiration. Gemeinsam mit unseren Partnern schaffen wir Momente, in denen Qualität, Design, Innovation und Ästhetik erlebbar werden. So entstehen Begegnungen und Verbindungen, die über den Anlass hinaus Wirkung entfalten und sich sowohl im beruflichen als auch im privaten Umfeld widerspiegeln.</p>
+    </div>
+  </section>
+
+  <!-- Mitglieder (Platzhalter) -->
+  <section id="members" style="padding: 120px 40px; background: #f5f2ed; text-align: center;">
+    <h2 style="font-size: 48px; margin-bottom: 20px;">Unsere Mitglieder</h2>
+    <p style="color: #b8945f; text-transform: uppercase; letter-spacing: 0.4em; font-size: 12px; margin-bottom: 60px;">Unternehmen der Baubranche</p>
+    <p style="color: #666;">Die Mitgliederlogos werden hier in Kürze angezeigt.</p>
+  </section>
+
+  <!-- Events -->
+  <section style="padding: 120px 40px; background: #1a1a1a; color: white; text-align: center;">
+    <h2 style="font-size: 48px; margin-bottom: 20px;">Unser letztes Event</h2>
+    <p style="color: #d4b483; text-transform: uppercase; letter-spacing: 0.4em; font-size: 12px; margin-bottom: 60px;">Begegnung. Atmosphäre. Austausch.</p>
+    
+    <div style="max-width: 1200px; margin: 0 auto; background: #222; display: flex; text-align: left;">
+      <div style="width: 50%; height: 400px; background: #333; display: flex; align-items: center; justify-content: center;">
+        <span style="color: #666;">[Bild: Baukarussell meets Sablier]</span>
+      </div>
+      <div style="width: 50%; padding: 60px; display: flex; flex-direction: column; justify-content: center;">
+        <p style="color: #b8945f; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 15px;">03. September 2026 • Networking Event</p>
+        <h3 style="font-size: 36px; margin-bottom: 20px;">Baukarussell meets Sablier</h3>
+        <p style="color: #aaa; margin-bottom: 30px; line-height: 1.6;">Ein Abend voller Begegnungen, Austausch und Inspiration. Gemeinsam mit unseren Partnern, Kunden und Gästen durften wir einen besonderen Abend im Sablier erleben.</p>
+        <a href="/events" style="display: inline-block; padding: 15px 30px; border: 1px solid white; color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; align-self: flex-start;">Alle Fotos ansehen →</a>
+      </div>
     </div>
     
-    <div style="margin-top: 50px;">
-      <a href="/events" style="display: inline-block; padding: 15px 30px; background: #1a1a1a; color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px;">Zu den Events →</a>
+    <div style="margin-top: 60px;">
+      <a href="/events" style="display: inline-block; padding: 15px 40px; background: white; color: #1a1a1a; text-decoration: none; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; font-weight: bold;">Alle Events ansehen →</a>
     </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="contact" style="padding: 120px 40px; text-align: center;">
+    <h2 style="font-size: 48px; margin-bottom: 20px;">Kontakt</h2>
+    <p style="color: #b8945f; text-transform: uppercase; letter-spacing: 0.4em; font-size: 12px; margin-bottom: 40px;">Interesse oder Fragen?</p>
+    <a href="mailto:info@baukarussell.ch" style="font-size: 36px; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #b8945f; padding-bottom: 5px;">info@baukarussell.ch</a>
   </section>
 </Layout>
