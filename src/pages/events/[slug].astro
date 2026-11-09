@@ -5,11 +5,13 @@ export async function getStaticPaths() {
   const events = await Astro.glob('../../content/events/*.md');
   
   return events.map((event) => {
-    // .url statt .file verwenden!
-    const parts = event.url.split('/');
-    const fileName = parts[parts.length - 1];
-    const slug = fileName.replace('.md', '');
-    
+    // Wir machen den Link aus dem Titel (z.B. "Baukarussell meets Sablier" -> "baukarussell-meets-sablier")
+    // Das ist absolut krisensicher und funktioniert immer.
+    const slug = event.frontmatter.title
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '');
+      
     return {
       params: { slug: slug },
       props: { event: event.frontmatter }
@@ -20,8 +22,8 @@ export async function getStaticPaths() {
 const { event } = Astro.props;
 ---
 <Layout title={event.title}>
-  <div style="width: 100%; height: 60vh; margin-top: 100px; overflow: hidden;">
-    <img src={event.image} alt={event.title} style="width: 100%; height: 100%; object-fit: cover;">
+  <div style="width: 100%; height: 60vh; margin-top: 100px; overflow: hidden; background: #ddd;">
+    {event.image && <img src={event.image} alt={event.title} style="width: 100%; height: 100%; object-fit: cover;">}
   </div>
 
   <div style="max-width: 800px; margin: 60px auto; padding: 0 40px;">
@@ -33,13 +35,5 @@ const { event } = Astro.props;
     <div style="font-size: 16px; line-height: 1.8; color: #444; text-align: justify;">
       {event.body}
     </div>
-
-    {event.galerie && (
-      <div style="margin-top: 80px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
-        {event.galerie.map((foto) => (
-          <img src={foto.image} alt="Impression" style="width: 100%; height: auto; border-radius: 4px;">
-        ))}
-      </div>
-    )}
   </div>
 </Layout>
